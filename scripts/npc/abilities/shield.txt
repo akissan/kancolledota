@@ -5,7 +5,8 @@
 	{
 		"BaseClass"				"ability_datadriven"
 		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
+		"AbilityTextureName"	"ULT"
+		
 		"precache"
 		{
 			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
