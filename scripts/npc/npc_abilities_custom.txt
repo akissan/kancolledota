@@ -1,4 +1,5 @@
 #base "abilities/shield.txt"
+#base "abilities/baseclass.txt"
 
 "DOTAAbilities"
 {

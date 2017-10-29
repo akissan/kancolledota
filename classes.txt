@@ -1,0 +1,16 @@
+class
+
+- evasion
+- plane count
+- rate of fire
+- fire power (????)
+- NP (+agility multiplier)
+- armor & armor penalty
+- night vision (????)
+- weight penalty (12 weight for destroyer, 60 weight for BB for ex.)
+
+base 
+- ms
+- firepower
+- base stats (health, armor & rate of fire, shield )
+- vision
