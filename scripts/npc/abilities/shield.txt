@@ -35,7 +35,7 @@
 				"IsHidden"			"1"
 				"IsDebuff"			"0"
 
-				"OnTakeDamage"
+				"OnAttacked"
 				{
 					"FireSound"
 					{
@@ -48,6 +48,18 @@
 						"ScriptFile"	"abilities/shield.lua"
 						"Function"		"Shield"
 						"Damage"		"%attack_damage"
+					}
+					"DelayedAction"
+					{
+						"Delay"     "0.01"
+						"Action"    
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/shield.lua"
+								"Function"		"Shield_heal"
+							}
+						}
 					}
 				}
 

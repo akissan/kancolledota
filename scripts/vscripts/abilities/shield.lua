@@ -8,15 +8,24 @@ function Shield(event)
 	local manaburn = 0
 	local cur_shld = caster:GetMana()
 
+
 	if (cur_shld < min_capacity) then
 		caster:SetMana(math.max(cur_shld-damage,0))
+		caster.HealthToHeal = 0
 	elseif (damage<cur_shld) then
 		caster:SetMana(cur_shld-damage)
-		caster:SetHealth(caster:GetHealth() + damage)
-	else
+		caster.HealthToHeal = damage
+		if caster:GetHealth() < damage then
+			caster:SetHealth(caster:GetHealth() + damage) 
+			caster.HealthToHeal = 0
+		end
+ 	else
 		caster:SetMana(0)
-		print(damage-cur_shld)
-		caster:SetHealth(caster:GetHealth() + cur_shld + (damage-cur_shld)*overkill_reduction ) 
+		caster.HealthToHeal = cur_shld + (damage-cur_shld)*overkill_reduction 
+	end
+
+	if caster.HealthToHeal > 0 then
+		SendOverheadEventMessage(caster, 12 , caster, caster.HealthToHeal , nil) 
 	end
 end
 
@@ -33,4 +42,9 @@ function Shield_visual( event )
     elseif caster:HasModifier(modifier) == true and cur_shld<min_capacity then
     	caster:RemoveModifierByName(modifier)
     end
+end
+
+function Shield_heal( event )
+	local caster = event.caster
+	caster:SetHealth(caster.HealthToHeal + caster:GetHealth() ) 
 end
