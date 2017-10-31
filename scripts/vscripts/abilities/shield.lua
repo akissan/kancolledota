@@ -1,3 +1,34 @@
+
+Shield = class({})
+
+
+LinkLuaModifier("shield_mod","abilities/shield_mod.lua", LUA_MODIFIER_MOTION_NONE)
+
+function Shield:GetIntrinsicModifierName() 
+	return "shield_mod"
+end
+
+function Shield:OnSpellStart( event )
+	self:StartIntervalThink(0.03)
+end
+
+function Shield:OnIntervalThink()
+	if IsServer() then
+		local ability = self:ability
+		local caster = self:GetPatent()
+		local min_capacity = caster:GetMaxMana()  * 0.1
+		local cur_shld = caster:GetMana() 
+		local modifier = "modifier_shield_visual"
+
+		if caster:HasModifier(modifier) == false and cur_shld>min_capacity then
+        	ability:ApplyDataDrivenModifier(caster, caster, modifier, {})
+    	elseif caster:HasModifier(modifier) == true and cur_shld<min_capacity then
+    		caster:RemoveModifierByName(modifier)
+    	end		
+	end
+end
+
+--[[
 function Shield(event)
 
  	local ability = event.ability
@@ -48,3 +79,5 @@ function Shield_heal( event )
 	local caster = event.caster
 	caster:SetHealth(caster.HealthToHeal + caster:GetHealth() ) 
 end
+
+]]

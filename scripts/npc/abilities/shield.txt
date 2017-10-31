@@ -1,6 +1,67 @@
 "DOTAAbilities"
 {
 
+	"Shield"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"abilities\shield.lua"
+		//"AbilityTextureName"			"ability_name"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		//"MaxLevel" 						"7"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"overkill_protection_tooltip"	"20 20 20 20"
+			}	
+		}
+
+		"precache"
+		{
+			"soundfile"			"soundevents/game_sounds_heroes/game_sounds_medusa.vsndevts"
+			"particle"			"particles/units/abilities/shield.vpcf"
+			"particle"			"particles/units/abilities/shield_cast.vpcf"
+			"particle"			"particles/units/abilities/shield_end.vpcf"
+			"particle"			"particles/units/abilities/shield_cast_2.pcf"
+			"particle"			"particles/units/abilities/shield_break_1.pcf"
+			"particle"			"particles/units/abilities/shield_shatter.pcf"
+		}
+
+		"Modifiers"
+		{
+			"modifier_shield_visual"
+			{
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+	
+				"EffectName"		"particles/units/abilities/shield.vpcf"
+				"EffectAttachType"	"follow_origin"
+				
+				"OnCreated"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/units/abilities/shield_cast.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+					}
+				}	
+
+				"OnDestroy"
+				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/units/abilities/shield_end.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"            "CASTER"
+					}
+				}
+			}
+		}
+	}
+
 	"Shield_light"
 	{
 		"BaseClass"				"ability_datadriven"

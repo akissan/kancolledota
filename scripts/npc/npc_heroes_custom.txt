@@ -6,7 +6,7 @@
 	"npc_dota_hero_test_templar"
 	{
 		"override_hero"					"npc_dota_hero_templar_assassin"
-		"Ability1"					"Shield_light"
+		"Ability1"					"Shield"
 		"Ability2"					"Destroyer"
 		"Ability3"					"AddPlane"
 	}

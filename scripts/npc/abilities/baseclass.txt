@@ -52,7 +52,7 @@
 
 			"08"
 			{
-				"var_type"						"FIELD_FLOAT"
+				"var_type"							"FIELD_FLOAT"
 				"class_overweight_penalty"		"4.5"
 			}
 
@@ -89,7 +89,7 @@
 					{
 						"ScriptFile"	"abilities/classes.lua"
 						"Function"		"Carry_slots_create"
-						"plane_count"	"%class_carry"
+						"carry"			"%class_carry"
 						"modifier"		"modifier_carry"
 					}
 				}
@@ -162,12 +162,12 @@
 			"modifier_NP_hidden"
 			{
 				"Passive"			"0"
-				"IsHidden"			"1"
-				"IsDebuff"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
 
 
 				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
-				
+
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 		"1"
