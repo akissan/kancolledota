@@ -3,5 +3,6 @@
 	 "consumables"
         {
                 "item"          "item_12cm_gun"
+                "item"          "item_12cm_green_gun"
         }
 }

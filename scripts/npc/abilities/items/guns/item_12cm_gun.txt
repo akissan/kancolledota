@@ -1,6 +1,7 @@
 "DOTAAbilities"
 {
-	"item_12cm_gun" {
+	"item_12cm_gun" 
+	{
 
 		"ID" "2922"
 		"BaseClass" "item_datadriven"
@@ -23,6 +24,40 @@
 		"Modifiers"
 		{
 			"item_12cm_gun_mod"
+   			{
+        		"Passive" "1"  
+				"Properties"
+        		{
+            		"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"
+           	 	}
+			}	
+ 		}
+	}
+
+	"item_12cm_green_gun" 
+	{
+
+		"ID" "2923"
+		"BaseClass" "item_datadriven"
+		"ItemCost" "23"
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		"ItemShareability"	"ITEM_PARTIALLY_SHAREABLE" 
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"weight"			"-7"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"item_12cm_green_gun_mod"
    			{
         		"Passive" "1"  
 				"Properties"

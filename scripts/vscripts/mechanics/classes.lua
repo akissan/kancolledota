@@ -2,18 +2,16 @@
 class_ability_index = 1
 
 function Plane_slots_create(event)
-	--GameRules:SetTimeOfDay(0)
+
 	local caster = event.caster
 	local ability = caster:GetAbilityByIndex(class_ability_index)
 	local modifier = event.modifier
 	local plane_count = event.plane_count
 	caster.max_plane_slots = plane_count 
-	caster.cur_plane_slots = plane_count
 
 	ability:ApplyDataDrivenModifier(caster, caster, modifier,{})
 	caster:SetModifierStackCount(modifier, caster, plane_count)
 end
-
 
 function Carry_slots_create(event)
 
@@ -62,6 +60,32 @@ function Check_NP( event )
 	end
 end
 
+function Check_plane_slots( event )
+	
+	local caster = event.caster
+	local ability = caster:GetAbilityByIndex(class_ability_index)
+	
+	local modifier = event.modifier
+	local cur_plane_count = 0
+
+	for i = 0, 5 do 
+		local item = caster:GetItemInSlot(i)
+		if item~=nil then 
+			local plane_count = item:GetSpecialValueFor("plane_count")
+			cur_plane_count = cur_plane_count + plane_count
+		end
+	end
+
+	local overplane = cur_plane_count - caster.max_plane_slots
+	caster:SetModifierStackCount(modifier, caster, cur_plane_count)
+
+	if overplane>0 then 
+		if not caster:HasModifier("modifier") then ability:ApplyDataDrivenModifier(caster, caster, modifier, {} ) end 
+	else 
+		if caster:HasModifier("modifier") then caster:RemoveModifierByName("modifier") end
+	end
+end
+
 function Check_overweight( event )
 
 	local caster = event.caster
@@ -70,6 +94,7 @@ function Check_overweight( event )
 	local modifier = event.modifier
 	local modifier_visual = event.modifier_visual   
 	local cur_carry = 0
+
 	for i = 0, 5 do 
 		local item = caster:GetItemInSlot(i)
 		if item~=nil then 

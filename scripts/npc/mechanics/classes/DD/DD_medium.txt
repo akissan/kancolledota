@@ -46,13 +46,13 @@
 			"07"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"class_overweight_penalty_tooltip"		"-17"
+				"class_overweight_penalty_tooltip"	"15"
 			}
 
 			"08"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"class_overweight_penalty"		"-15"
+				"class_overweight_penalty"			"-15"
 			}
 
 		}
@@ -79,17 +79,17 @@
 					"RunScript"
 					{
 						"ScriptFile"	"mechanics/classes.lua"
-						"Function"	"Plane_slots_create"
+						"Function"		"Plane_slots_create"
 						"plane_count"	"%class_plane_count"
-						"modifier"	"modifier_plane_slots"
+						"modifier"		"modifier_plane_slots"
 					}
 
 					"RunScript"
 					{
 						"ScriptFile"		"mechanics/classes.lua"
-						"Function"		"Carry_slots_create"
-						"carry"			"%class_carry"
-						"modifier"		"modifier_carry"
+						"Function"			"Carry_slots_create"
+						"carry"				"%class_carry"
+						"modifier"			"modifier_carry"
 					}
 				}
 
@@ -108,10 +108,18 @@
 					"RunScript"
 					{
 						"ScriptFile"			"mechanics/classes.lua"
-						"Function"			"Check_NP"
+						"Function"				"Check_NP"
 						"NP_multiplier"			"%class_NP_multiplier"
-						"modifier"			"modifier_NP_hidden"
+						"modifier"				"modifier_NP_hidden"
 						"modifier_visual"		"modifier_NP_visual"
+					}
+
+
+					"RunScript"
+					{
+						"ScriptFile"			"mechanics/classes.lua"
+						"Function"				"Check_plane_slots"
+						"modifier"				"modifier_overplane"
 					}
 				}
 			}
@@ -122,6 +130,20 @@
 				"IsHidden"			"0"
 				"IsDebuff"			"0"
 				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
+			}
+
+			"modifier_overplane"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"			"MODIFIER_STATE_VALUE_ENABLED"
+						
+				}
 			}
 
 			"modifier_carry"
@@ -151,8 +173,9 @@
 				
 				"Properties"
 				{
-				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" "%class_overweight_penalty" 
-				}			
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" 	"%class_overweight_penalty"
+				    "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"	 	"%class_overweight_penalty" 
+				}
 			}
 
 			"modifier_NP_visual"
