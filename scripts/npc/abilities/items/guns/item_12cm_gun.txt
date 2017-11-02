@@ -1,0 +1,35 @@
+"DOTAAbilities"
+{
+	"item_12cm_gun" {
+
+		"ID" "2922"
+		"BaseClass" "item_datadriven"
+		"ItemCost" "22"
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		"ItemShareability"	"ITEM_PARTIALLY_SHAREABLE" 
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"weight"			"5"
+			}
+		}
+
+		"Modifiers"
+		{
+			"item_12cm_gun_mod"
+   			{
+        		"Passive" "1"  
+				"Properties"
+        		{
+            		"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"
+           	 	}
+			}	
+ 		}
+	}
+}

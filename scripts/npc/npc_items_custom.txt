@@ -1,3 +1,5 @@
+#base "abilities/items/guns/item_12cm_gun.txt"
+
 "DOTAAbilities"
 {
 }

@@ -2,6 +2,6 @@
 {
 	 "consumables"
         {
-                "item"          "item_plane"
+                "item"          "item_12cm_gun"
         }
 }

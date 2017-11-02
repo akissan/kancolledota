@@ -1,0 +1,31 @@
+"DOTAAbilities"
+{
+
+	"Shield"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"mechanics\shield.lua"
+		//"AbilityTextureName"			"ability_name"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		//"MaxLevel" 						"7"
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"overkill_protection_tooltip"	"20 20 20 20"
+			}	
+		}
+
+		"precache"
+		{
+
+			"particle"			"particles/units/abilities/shield.vpcf"
+			"particle"			"particles/units/abilities/shield_cast.vpcf"
+			"particle"			"particles/units/abilities/shield_end.vpcf"
+			"particle"			"particles/units/abilities/shield_cast_2.pcf"
+			"particle"			"particles/units/abilities/shield_break_1.pcf"
+			"particle"			"particles/units/abilities/shield_shatter.pcf"
+		}
+	}
+}

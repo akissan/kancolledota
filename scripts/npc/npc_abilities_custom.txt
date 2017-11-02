@@ -1,5 +1,6 @@
-#base "abilities/shield.txt"
-#base "abilities/baseclass.txt"
+#base "mechanics/shield/shield.txt"
+#base "mechanics/classes/baseclass.txt"
+#base "mechanics/classes/DD/DD_medium.txt"
 
 "DOTAAbilities"
 {
