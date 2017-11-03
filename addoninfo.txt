@@ -1,3 +1,6 @@
 "AddonInfo"
 {
+	maps			"desert_duo"
+	"IsTemplate"	"1"
+	"IsPlayable"	"0"
 }

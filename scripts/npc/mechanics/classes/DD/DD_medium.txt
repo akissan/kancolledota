@@ -54,7 +54,6 @@
 				"var_type"							"FIELD_FLOAT"
 				"class_overweight_penalty"			"-15"
 			}
-
 		}
 	
 
@@ -184,7 +183,6 @@
 				"IsHidden"			"0"
 				"IsBuff"			"1"
 			}
-
 
 			"modifier_NP_hidden"
 			{
