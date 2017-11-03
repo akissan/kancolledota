@@ -1,6 +1,7 @@
 
 class_ability_index = 1
 
+
 function Plane_slots_create(event)
 
 	local caster = event.caster

@@ -12,6 +12,9 @@ function shield_mod:DeclareFunctions(  )
 	return funcs
 end
 
+function shield_mod:IsHidden() 
+	return true
+end
 
 function shield_mod:OnCreated()
 	if IsServer() then
