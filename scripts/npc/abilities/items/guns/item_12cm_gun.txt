@@ -10,8 +10,11 @@
 		"ItemSellable" "1"
 		"ItemPurchasable" "1"
 		"ItemDroppable" "1"
+		"AbilityTextureName" "custom/imba_arcane_boots"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ItemShareability"	"ITEM_PARTIALLY_SHAREABLE" 
-
+		//"Model"				"models/naval_cannon.vmdl"
+		"Effect" "particles/generic_gameplay/dropped_item.vpcf"
 		"AbilitySpecial"
 		{
 			"01"
@@ -51,7 +54,12 @@
 			"01"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"weight"			"-7"
+				"weight"			"10"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"plane_count"		"4"
 			}
 		}
 		

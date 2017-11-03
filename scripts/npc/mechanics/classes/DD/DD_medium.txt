@@ -16,7 +16,7 @@
 			"02"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"class_plane_count"				"0"
+				"class_plane_count"				"11"
 			}
 
 			"03"
@@ -102,6 +102,7 @@
 						"Function"				"Check_overweight"
 						"modifier"				"modifier_overweight"
 						"modifier_visual"		"modifier_overweight_visual"
+						"modifier_stacks"		"modifier_carry"
 					}
 
 					"RunScript"
@@ -119,6 +120,7 @@
 						"ScriptFile"			"mechanics/classes.lua"
 						"Function"				"Check_plane_slots"
 						"modifier"				"modifier_overplane"
+						"modifier_visual"		"modifier_plane_slots"
 					}
 				}
 			}
