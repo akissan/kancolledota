@@ -1,5 +1,110 @@
 "DOTAAbilities"
 {
+	"item_36.5cm_red_gun"
+	{
+		"ID" "2931"
+		"BaseClass" "item_datadriven"
+		"ItemCost" 	"129"
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		"ItemShareability"	"ITEM_PARTIALLY_SHAREABLE" 
+        "AbilityTextureName" "guns/36.5cm_gun"
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"weight"			"9"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"crit"				"120"
+			}
+		}
+
+
+		"Modifiers"
+		{
+			"item_36.5cm_red_gun_mod"
+   			{
+   				"IsHidden" "1"
+        		"Passive" "1"  
+        		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				"Properties"
+        		{
+            		"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 	"25"
+            		//"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"-10"
+           	 	}
+
+
+				"OnAttackStart"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"item_36.5cm_red_gun_crit_mod"
+						"Target" 		"CASTER"
+					}
+
+					"Random"
+					{
+						"Chance"			"35"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"ModifierName"	"item_36.5cm_red_gun_crit_mod"
+								"Target" 		"CASTER"
+							}
+						}
+					}
+				}
+			}
+
+			"item_36.5cm_red_gun_crit_mod"
+   			{
+   				"IsHidden" "1"
+        		"Passive" "0"  
+        		"Properties"
+        		{
+            		"MODIFIER_PROPERTY_PREATTACK_CRITICALSTRIKE" "%crit"
+           	 	}
+           	 	"OnAttackLanded"
+           	 	{
+           	 		"RemoveModifier"
+           	 		{
+           	 			"ModifierName"	"item_36.5cm_red_gun_crit_mod"
+           	 			"Target" 		"CASTER"
+           	 		}
+           	 	}
+			}		
+ 		}
+
+	}
+
+	
+
+	"item_recipe_36.5cm_red_gun" 
+	{
+    	"ID" "3200"
+    	"BaseClass"           "item_datadriven"
+    	"ItemRecipe"          "1" //destroyed after combine
+    	"ItemCost"            "10" //if its 0, it will combine without needing a recipe.
+    	"ItemResult"          "item_36.5cm_red_gun" //the result of combining the ItemRequirements
+    	
+    	"ItemRequirements"
+    	{
+    	    "01" "item_12cm_gun;item_12cm_gun"
+    	    "01" "item_12cm_gun;item_12cm_green_gun"
+    	    
+    	    //"02" "item_ingredient_1;item_ingredient_2;item_ingredient_alternative_3"
+    	}
+	}
+
 	"item_12cm_gun" 
 	{
 
@@ -10,7 +115,7 @@
 		"ItemSellable" "1"
 		"ItemPurchasable" "1"
 		"ItemDroppable" "1"
-		"AbilityTextureName" "custom/imba_arcane_boots"
+		"AbilityTextureName" "guns/12cm_gun"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"ItemShareability"	"ITEM_PARTIALLY_SHAREABLE" 
 		//"Model"				"models/naval_cannon.vmdl"
@@ -28,7 +133,9 @@
 		{
 			"item_12cm_gun_mod"
    			{
+   				"IsHidden" "1"
         		"Passive" "1"  
+        		"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
 				"Properties"
         		{
             		"MODIFIER_PROPERTY_STATS_AGILITY_BONUS" "20"
@@ -37,42 +144,5 @@
  		}
 	}
 
-	"item_12cm_green_gun" 
-	{
-
-		"ID" "2923"
-		"BaseClass" "item_datadriven"
-		"ItemCost" "23"
-		"ItemKillable" "0" 
-		"ItemSellable" "1"
-		"ItemPurchasable" "1"
-		"ItemDroppable" "1"
-		"ItemShareability"	"ITEM_PARTIALLY_SHAREABLE" 
-
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"weight"			"10"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"plane_count"		"4"
-			}
-		}
-		
-		"Modifiers"
-		{
-			"item_12cm_green_gun_mod"
-   			{
-        		"Passive" "1"  
-				"Properties"
-        		{
-            		"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" "20"
-           	 	}
-			}	
- 		}
-	}
+	
 }

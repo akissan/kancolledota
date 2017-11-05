@@ -1,7 +1,6 @@
 #base "mechanics/shield/shield.txt"
-#base "mechanics/classes/baseclass.txt"
+#base "abilities/kanmusu/AA.txt"
 #base "mechanics/classes/DD/DD_medium.txt"
-
 "DOTAAbilities"
 {
 }

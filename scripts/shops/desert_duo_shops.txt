@@ -1,8 +1,18 @@
 "dota_shops"
 {
-	 "consumables"
+	"consumables"
         {
-                "item"          "item_12cm_gun"
-                "item"          "item_12cm_green_gun"
+                "item"                  "item_12cm_gun"
+                "item"                  "item_type99_dive_bomber" 
+                "item"			"item_green_gun"
+                "item"			"item_36.5cm_red_gun"
+                "item"			"item_25mm_twin_autocannon_mount"
+                "item"			"item_7.7mm_machine_gun"
+                "item"			"item_catapult"
+        }
+        "misc"
+        {
+                        "item"          "item_skilled_perconal"
+                        "item"          "item_skilled_lookouts"
         }
 }

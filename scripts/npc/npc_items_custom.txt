@@ -1,5 +1,8 @@
 #base "abilities/items/guns/item_12cm_gun.txt"
-
+#base "abilities/items/guns/green_guns.txt"
+#base "abilities/items/aviation/catapult.txt"
+#base "abilities/items/misc/perconal.txt"
+#base "abilities/items/aviation/dive_bombers.txt"
 "DOTAAbilities"
 {
 }

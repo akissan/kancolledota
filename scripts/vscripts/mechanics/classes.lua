@@ -1,5 +1,22 @@
-
 class_ability_index = 1
+
+function AA_initialize( event )
+	local caster = event.caster
+	local modifier = event.modifier
+	local ability = event.ability
+	local init_aa = event.init_aa
+	ability:ApplyDataDrivenModifier(caster, caster, modifier, {}) 
+	caster:SetModifierStackCount(modifier, caster, init_aa)
+	caster.aa = init_aa
+end
+
+function AA_show( event )
+	local caster = event.caster
+	local ability = event.ability
+	local modifier = event.modifier
+	if caster.aa ~= nil then caster:SetModifierStackCount(modifier, caster, caster.aa ) end
+end
+
 
 
 function Plane_slots_create(event)
@@ -9,9 +26,10 @@ function Plane_slots_create(event)
 	local modifier = event.modifier
 	local plane_count = event.plane_count
 	caster.max_plane_slots = plane_count 
-
-	ability:ApplyDataDrivenModifier(caster, caster, modifier,{})
-	caster:SetModifierStackCount(modifier, caster, plane_count)
+	if plane_count>0 then 
+		ability:ApplyDataDrivenModifier(caster, caster, modifier,{})
+		caster:SetModifierStackCount(modifier, caster, plane_count)
+	end
 end
 
 function Carry_slots_create(event)
@@ -77,14 +95,15 @@ function Check_plane_slots( event )
 		if item~=nil then 
 			local plane_count = 0
 			plane_count = item:GetSpecialValueFor("plane_count")
-			cur_plane_count = cur_plane_count + plane_count
+			if plane_count~=nil then cur_plane_count = cur_plane_count + plane_count end
 		end
 	end
 
 	local overplane = cur_plane_count - caster.max_plane_slots 
 	
-
-	caster:SetModifierStackCount(modifier_visual, caster, -overplane)
+	if caster.max_plane_slots>0 then
+		caster:SetModifierStackCount(modifier_visual, caster, -overplane)
+	end
 
 	if overplane > 0 then  
 		if not caster:HasModifier(modifier) then ability:ApplyDataDrivenModifier(caster, caster, modifier, {} ) end
@@ -109,7 +128,9 @@ function Check_overweight( event )
 		local item = caster:GetItemInSlot(i)
 		if item~=nil then 
 			local weight = item:GetSpecialValueFor("weight")
-			cur_carry = cur_carry + weight
+			if weight~= nil then
+				cur_carry = cur_carry + weight
+			end 
 		end
 	end
 

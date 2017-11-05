@@ -1,0 +1,158 @@
+"DOTAAbilities"
+{
+	"item_type99_dive_bomber" 
+	{
+
+		"ID" "3800"
+		"BaseClass" "item_datadriven"
+		"ItemCost" "23"
+		"ItemKillable" "0" 
+		"ItemSellable" "1"
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		"ItemShareability"	"ITEM_PARTIALLY_SHAREABLE" 
+        
+        "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AURA"
+        "AbilityCooldown"				"14"
+        "AbilityCastPoint"				"0.8"
+  		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+
+
+  		"precache"
+		{
+			"particle"			 "particles/units/heroes/hero_lina/lina_base_attack.vpcf"
+		}
+
+        "OnSpellStart"
+    	{
+      		"SpawnUnit"
+      		{
+      			"UnitName"		"npc_type99_dive_bomber"
+      			"Target" 		"CASTER"
+      			"Duration"		"30"
+      			"UnitCount"		"1"
+     			"UnitLimit"		"0"
+      			"GrantsGold"	"10"
+      			"GrantsXP"		"30"
+      			"SpawnRadius"	"14"
+
+      			"OnSpawn"
+      			{
+      				"ApplyModifier"
+      				{
+      					"ModifierName"	"modifier_phased"
+      					"Target"		"TARGET"
+      					"Duration"		"0.03"
+      				}
+      			}
+      		}
+        }
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"weight"			"3"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"plane_count"		"0"
+			}
+			"03"
+			{	
+				"var_type"			"FIELD_INTEGER"
+				"repair_radius"		"100"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"repair"			"8"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"think_interval"	"0.5"
+			}
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aura_radius"		"2200"
+			}
+		}
+		
+		"Modifiers"
+		{
+			"modifier_item_type99_dive_bomber"
+   			{
+   				"IsHidden" "1"
+	        	"Passive" "1"  
+	        	"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+	        	"Aura"					"modifier_item_type99_dive_bomber_buff_repair"
+				"Aura_Radius"			"%repair_radius"
+				"Aura_Teams"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types"			"DOTA_UNIT_TARGET_CREEP"
+				"Aura_Flags"			"DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
+
+           	 	"ThinkInterval"  "%think_interval"
+				"OnIntervalThink"
+				{
+					"ActOnTargets"
+					{
+						"Target"
+						{
+							"Center"  	"CASTER"
+							"Radius" 	"%aura_radius"
+							"Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Types" 	"DOTA_UNIT_TARGET_BASIC"
+							"Flags"		"DOTA_UNIT_TARGET_FLAG_PLAYER_CONTROLLED"
+						}
+				
+						"Action"    
+						{
+							"RunScript"
+							{
+								"ScriptFile"	"abilities/items/aviation.lua"
+								"Function"		"modfi_to_my_aviation"
+								"modifier"		"modifier_item_type99_dive_bomber_buff_vision"
+							}
+						}
+					}
+				}
+			}
+
+			"modifier_item_type99_dive_bomber_buff_repair"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"ThinkInterval" "0.2"
+
+				"OnIntervalThink"
+				{
+					"Heal"
+					{
+						"Target"        "TARGET"
+						"HealAmount"	"%repair"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%repair" 
+				}
+			}	
+
+			"modifier_item_type99_dive_bomber_buff_vision"
+			{
+				"IsHidden" "1"
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_BONUS_DAY_VISION" "200" 
+				}
+			}
+ 		}
+	}
+}

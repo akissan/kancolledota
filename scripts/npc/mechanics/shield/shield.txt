@@ -28,4 +28,11 @@
 			"particle"			"particles/units/abilities/shield_shatter.pcf"
 		}
 	}
+
+	"AA_take_damage"
+	{
+		"BaseClass"             		"ability_lua"
+		"ScriptFile"					"mechanics\AA_take_damage.lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	}
 }

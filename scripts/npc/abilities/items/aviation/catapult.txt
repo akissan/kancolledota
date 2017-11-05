@@ -1,0 +1,61 @@
+"DOTAAbilities"
+{
+	"item_catapult"
+	{
+
+		"ID" "2942"
+		"BaseClass"	 "item_datadriven"
+		"ItemCost" 		"229"
+		"ItemKillable" 	"0" 
+		"ItemSellable" 	"1"
+		"ItemPurchasable"	 "1"
+		"ItemDroppable" 		"1"
+		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
+        //"AbilityTextureName" 	""
+
+        "AbilitySpecial"
+        {
+        	"01"
+        	{
+        		"var_type"			"FIELD_INTEGER"
+        		"weight"			"3"
+        	}
+        	"02"
+        	{
+        		"var_type"			"FIELD_INTEGER"
+        		"slots"				"6"
+        	}
+        }
+
+        "Modifiers"
+        {
+        	"modifier_item_catapult"
+        	{
+        		"Passive"			"1"
+        		"IsHidden"			"1"
+        		"IsDebuff"			"0"
+    			
+        		"OnCreated"
+        		{
+        			"RunScript"
+        			{
+        				"ScriptFile"	"abilities/items/catapult.lua"
+        				"Function"		"catapult_add"
+        				"additional_slots"	 "%slots"
+        			}
+        		}
+
+        		"OnDestroy"
+        		{
+        			"RunScript"
+        			{
+        				"ScriptFile"	"abilities/items/catapult.lua"
+        				"Function"		"catapult_destroy"
+        				"additional_slots"	 "%slots"
+        			}
+        		}
+
+ 	       	}
+        }
+	}
+}
