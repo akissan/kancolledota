@@ -158,39 +158,3 @@ function Check_overweight( event )
 	caster.cur_carry = cur_carry
 	caster:SetModifierStackCount(modifier_stacks, caster, caster.max_carry - cur_carry)
 end
---[[ if overweight>0 then
-
-		if not caster:HasModifier(modifier_visual) then ability:ApplyDataDrivenModifier(caster,caster, modifier_visual, {}) end
-	
-		if delta>0 then 
-
-			for i = 1,  delta do ability:ApplyDataDrivenModifier(caster, caster, modifier, {} ) end
-		
-		elseif delta<0 then
-
-			delta = -delta
-			
-			for i = 1, delta do caster:RemoveModifierByName(modifier) end
-		
-		end
-
-	else
-
-		overweight = -overweight 
-		
-		if caster:HasModifier(modifier_visual) then caster:RemoveModifierByName(modifier_visual) end
-		
-		if delta<0 then 
-			delta = -delta 
-			for i=1, delta do caster:RemoveModifierByName(modifier) end
-		end
-	end
-
---		for i = caster.cur_carry, cur_carry do ability:ApplyDataDrivenModifier(caster, caster, modifier, {}) end
---	elseif caster:HasModifier(modifier_visual) then caster:RemoveModifierByName(modifier_visual) end 
-
-	caster.cur_carry = cur_carry
-]]--
-
---	if cur_carry>caster.max_carry then ability:ApplyDataDrivenModifier(caster, caster, modifier_visual, {}) elseif cur_carry<=caster.max_carry and caster:HasModifier(modifier_visual) then caster:RemoveModifierByName(modifier_visual) end
-

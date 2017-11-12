@@ -1,0 +1,247 @@
+"DOTAAbilities"
+{	
+	"item_type_91_anti_aircraft_fire_director"
+	{
+
+		"ID" 				"3153"
+		"BaseClass" 		"item_datadriven"
+		"ItemCost" 			"22"
+		"ItemKillable" 		"1" 
+		"ItemSellable" 		"1"
+
+		"ItemPurchasable" 		"1"
+		"ItemDroppable" 		"1"
+		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
+		"AbilityCooldown"		"24"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastRange"		"600"
+		"AbilityTextureName" "misc/91_fd"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"weight"			"1"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aa_value"			"7"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"attack_interval"	"0.45"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"9"
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"raduis"			"600"
+			}
+		}
+
+		"precache"
+    	{
+    	    "particle" "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+    	}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_PHYSICAL"
+				"Damage"		"15"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_91_fire_director_buff"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+			}
+		}
+
+		"Modifiers"
+		{	
+			"modifier_91_fire_director"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				
+				"OnCreated"
+        		{
+        			"RunScript"
+        			{
+        				"ScriptFile"	"abilities/kanmusu/aa.lua"
+        				"Function"		"aa_increase"
+        				"aa_value" 		"%aa_value"
+        			}
+        		}
+
+        		"OnDestroy"
+        		{
+        			"RunScript"
+        			{
+        				"ScriptFile"	"abilities/kanmusu/aa.lua"
+        				"Function"		"aa_decrease"
+        				"aa_value" 		"%aa_value"
+        			}
+        			"RemoveModifier"
+        			{
+        				"ModifierName"	"modifier_91_fire_director_buff"
+        				"Target" 		"CASTER"
+        			}
+        		}
+			}
+
+			"modifier_91_fire_director_buff"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsStunDebuff"		"0"
+
+				"ThinkInterval"  "%attack_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/items/fire_director.lua"
+						"Function"		"detect"
+						"raduis"		"%raduis"
+					}
+				}
+			}
+		}
+	}
+
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+	"item_type_94_anti_aircraft_fire_director"
+	{
+
+		"ID" 				"3154"
+		"BaseClass" 		"item_datadriven"
+		"ItemCost" 			"22"
+		"ItemKillable" 		"1" 
+		"ItemSellable" 		"1"
+		"AbilityTextureName" "misc/94_fd"
+		"ItemPurchasable" 		"1"
+		"ItemDroppable" 		"1"
+		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
+
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityCastRange"		"700"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"weight"			"2"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aa_value"			"12"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"attack_interval"	"0.3"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"raduis"			"700"
+			}
+		}
+
+		"precache"
+    	{
+    	    "particle" "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+    	}
+
+		"OnProjectileHitUnit"
+		{
+			"DeleteOnHit"	"1"
+			"Damage"
+			{
+				"Target"		"TARGET"
+				"Type"			"DAMAGE_TYPE_PHYSICAL"
+				"Damage"		"20"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_94_fire_director"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				
+				"OnCreated"
+        		{
+        			"RunScript"
+        			{
+        				"ScriptFile"	"abilities/kanmusu/aa.lua"
+        				"Function"		"aa_increase"
+        				"aa_value" 		"%aa_value"
+        			}
+        		}
+
+        		"OnDestroy"
+        		{
+        			"RunScript"
+        			{
+        				"ScriptFile"	"abilities/kanmusu/aa.lua"
+        				"Function"		"aa_decrease"
+        				"aa_value" 		"%aa_value"
+        			}
+        		}
+
+				"ThinkInterval"  "%attack_interval"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/items/fire_director.lua"
+						"Function"		"detect"
+						"raduis"		"%raduis"
+					}
+				}
+			}
+		}
+	}
+
+	"item_recipe_type_94_anti_aircraft_fire_director"
+	{
+		"ID" "3155"
+    	"BaseClass"           	"item_datadriven"
+    	"ItemRecipe"          	"1" //destroyed after combine
+    	"ItemCost"            	"250" //if its 0, it will combine without needing a recipe.
+    	"ItemResult"			"item_type_94_anti_aircraft_fire_director"      //the result of combining the ItemRequirements
+    	
+    	"ItemRequirements"
+    	{
+    	    "01" "item_type_91_anti_aircraft_fire_director"
+   	     	    //"02" "item_ingredient_1;item_ingredient_2;item_ingredient_alternative_3"
+    	}
+	}
+}

@@ -33,7 +33,7 @@
 
 
         "ProjectileModel"            "particles/units/heroes/hero_lina/lina_base_attack.vpcf"
-	"ProjectileSpeed"            "900"
+        "ProjectileSpeed"            "900"
 
         "BoundsHullName"        "DOTA_HULL_SIZE_HERO"
         "RingRadius"            "70"
@@ -58,5 +58,5 @@
                 "DisableClumpingBehavior"       "1"        
         }
 
-        }
+    }
 }

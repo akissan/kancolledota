@@ -1,8 +1,13 @@
 #base "abilities/items/guns/item_12cm_gun.txt"
 #base "abilities/items/guns/green_guns.txt"
 #base "abilities/items/aviation/catapult.txt"
-#base "abilities/items/misc/perconal.txt"
+#base "abilities/items/misc/personnel.txt"
 #base "abilities/items/aviation/dive_bombers.txt"
+#base "abilities/items/misc/searchlight.txt"
+#base "abilities/items/guns/red_guns.txt"
+#base "abilities/items/misc/aa_fire_director.txt"
+#base "abilities/items/radars/surface_radars.txt"
+#base "abilities/items/radars/air_radars.txt"
 "DOTAAbilities"
 {
 }

@@ -2,9 +2,9 @@
 {
 	"consumables"
         {
-                "item"                  "item_12cm_gun"
+                "item"                  "item_12.7cm_twin_gun_mount_model_b_kai_ni"
                 "item"                  "item_type99_dive_bomber" 
-                "item"			"item_green_gun"
+                "item"			"item_12.7cm_twin_gun_mount"
                 "item"			"item_36.5cm_red_gun"
                 "item"			"item_25mm_twin_autocannon_mount"
                 "item"			"item_7.7mm_machine_gun"
@@ -12,7 +12,22 @@
         }
         "misc"
         {
-                        "item"          "item_skilled_perconal"
+                        "item"          "item_skilled_personnel"
                         "item"          "item_skilled_lookouts"
+                        "item"          "item_type_96_150cm_searchlight"
+                        "item"          "item_searchlight"       
+                        "item"          "item_type_94_anti_aircraft_fire_director"
+                        "item"          "item_type_22_surface_radar"
+        }
+        "artifacts"
+        {
+                        "item"          "item_type_91_anti_aircraft_fire_director"
+                        "item"          "item_type_22_surface_radar_kai"
+                        "item"          "item_type_33_surface_radar"
+                        "item"          "item_type_32_surface_radar"
+                        "item"          "item_type_32_surface_radar_kai"
+                        "item"          "item_type_13_air_radar"
+                        "item"          "item_15m_rangefinder"
+               
         }
 }

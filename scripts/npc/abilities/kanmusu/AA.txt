@@ -41,18 +41,16 @@
 		}
 	}
 
-	"AA_take_damage"
+	"aa_take_damage"
 	{
 		"BaseClass"             		"ability_lua"
-		"ScriptFile"					"mechanics\AA_take_damage.lua"
+		"ScriptFile"					"mechanics\aa_take_damage.lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 	}
 
-	"AA_aoe"
+	"aa_aoe"
 	{
 		"BaseClass"             		"ability_datadriven"
-		//"AbilityTextureName"			"ability_name"
-		//"MaxLevel" 						"7"
 		 "AbilityBehavior" 				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
@@ -93,7 +91,7 @@
 		{
 			"ApplyModifier"
 			{
-				"ModifierName"	"modifier_AA_aoe"
+				"ModifierName"	"modifier_aa_aoe"
 				"Target" 		"CASTER"
 				"Duration"		"%duration"
 			}
@@ -112,7 +110,7 @@
 
 		"Modifiers"
 		{
-			"modifier_AA_aoe"
+			"modifier_aa_aoe"
 			{
 				"Passive"			"0"
 				"IsHidden"			"0"
@@ -129,7 +127,7 @@
                 			"Center" "CASTER"
                 			"Radius" "%radius"
                 			"Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY" 
-                			"TargetTypes"    "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+                			"TargetTypes"    "DOTA_UNIT_TARGET_CREEP"
                 			"MaxTargets" 			"1"
 							"Random" 				"1"
             			}

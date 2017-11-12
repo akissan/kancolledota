@@ -27,7 +27,6 @@
 			}
 		}
 
-
 		"Modifiers"
 		{
 			"item_36.5cm_red_gun_mod"

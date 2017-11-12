@@ -1,10 +1,10 @@
 
-AA_take_damage = class({})
+aa_take_damage = class({})
 
 
-LinkLuaModifier("AA_take_damage_mod","mechanics/AA_take_damage_mod.lua", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_aa_take_damage","mechanics/modifier_aa_take_damage.lua", LUA_MODIFIER_MOTION_NONE)
 
-function  AA_take_damage:GetIntrinsicModifierName() 
-	return "AA_take_damage_mod"
+function  aa_take_damage:GetIntrinsicModifierName() 
+	return "modifier_aa_take_damage"
 end
 

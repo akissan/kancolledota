@@ -2,7 +2,7 @@
 {
 	"item_7.7mm_machine_gun"
 	{
-		"ID" "2927"
+		"ID" "2900"
 		"BaseClass"	 					"item_datadriven"
 		"ItemCost" 						"80"
 		"ItemKillable" 					"1" 
@@ -21,11 +21,6 @@
 				"weight"			"1"
 			}
 			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"plane_count"		"0"
-			}
-			"03"
 			{
 				"var_type"			"FIELD_INTEGER"
 				"aa_value"			"4"
@@ -65,7 +60,7 @@
 
 	"item_recipe_25mm_twin_autocannon_mount" 
 	{
-    	"ID" "3201"
+    	"ID" "2901"
     	"BaseClass"           	"item_datadriven"
     	"ItemRecipe"          	"1" //destroyed after combine
     	"ItemCost"            	"250" //if its 0, it will combine without needing a recipe.
@@ -81,7 +76,7 @@
 
 	"item_25mm_twin_autocannon_mount"
 	{
-		"ID" "2928"
+		"ID" "2902"
 		"BaseClass"	 					"item_datadriven"
 		"ItemCost" 						"1000"
 		"ItemKillable" 					"1" 
@@ -119,7 +114,7 @@
 			"05"
 			{
 				"var_type"			"FIELD_INTEGER"
-				"boost_aa"			"900"
+				"boost_aa"			"400"
 			}
 		}
 

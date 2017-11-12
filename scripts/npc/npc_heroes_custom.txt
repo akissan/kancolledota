@@ -9,12 +9,12 @@
 		"Ability1"					"Shield"
 		"Ability2"					"DD_Medium"
 		"Ability3"					"AA"
-		"Ability4"					"AA_aoe"
+		"Ability4"					"aa_aoe"
 	}
 
 	"npc_dota_test_visage"
 	{
 		"override_hero"				"npc_dota_hero_visage"
-		"Ability1"					"AA_take_damage"
+		"Ability1"					"aa_take_damage"
 	}
 }

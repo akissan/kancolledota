@@ -1,0 +1,257 @@
+"DOTAAbilities"
+{
+	"item_searchlight"
+	{
+		"ID" "3150"
+		"BaseClass" "item_datadriven"
+		"ItemCost" 	"22"
+		"ItemKillable" "1" 
+		"ItemSellable" "1"
+
+		"ItemPurchasable" "1"
+		"ItemDroppable" "1"
+		"ItemShareability"	"ITEM_PARTIALLY_SHAREABLE" 
+        
+      	"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+      	"AbilitySpecial"
+      	{
+      		"01"
+      		{
+      			"var_type"				"FIELD_INTEGER"
+      			"night_vision_bouns"	"200"
+      		}
+      		"02"
+      		{
+      			"var_type"			"FIELD_INTEGER"
+      			"weight"			"1"
+      		}
+      	}
+
+      	"Modifiers"
+      	{
+      		"modifier_searchlight"
+      		{
+      			"Passive"			"1"
+      			"IsHidden"			"1"
+
+      			"Properties"
+      			{
+      			    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION" 	"%night_vision_bouns" 
+      			}      	
+      		}
+      	}
+	}	
+
+	"item_type_96_150cm_searchlight"
+	{
+		"ID" "3151"
+		"BaseClass" "item_datadriven"
+		"ItemCost" 	"22"
+		"ItemKillable" "1" 
+		"ItemSellable" "1"
+
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityCastRange"				"700"
+		"AbilityCastPoint"				"0.2"
+
+
+		"AbilitySpecial"
+      	{
+      		"01"
+      		{
+      			"var_type"				"FIELD_INTEGER"
+      			"night_vision_bouns"	"300"
+      		}
+
+      		"02"
+      		{
+      			"var_type"			"FIELD_INTEGER"
+      			"weight"			"2"
+      		}
+
+      		"03"
+      		{
+      			"var_type"				"FIELD_INTEGER"
+      			"day_vision_bouns"		"300"
+     		}
+
+     		"04"
+      		{
+      			"var_type"				"FIELD_INTEGER"
+      			"buff_evasion_bouns"	"25"
+     		}
+
+     		"04"
+      		{
+      			"var_type"				"FIELD_INTEGER"
+      			"debuff_evasion_bouns"	"-25"
+     		}
+
+     		"05"
+      		{
+      			"var_type"				"FIELD_INTEGER"
+      			"buff_duration"			"6"
+     		}
+
+			"06"
+      		{
+      			"var_type"				"FIELD_INTEGER"
+      			"miss_debuff"		"25"
+     		}
+
+     		"07"
+      		{
+      			"var_type"				"FIELD_INTEGER"
+      			"agility_bonus"			"12"
+      		}
+
+      		"08"
+      		{
+      			"var_type"					"FIELD_INTEGER"
+      			"buff_night_vision_bonus"	"600"
+      		}
+
+      		"09"
+      		{
+      			"var_type"					"FIELD_INTEGER"
+      			"debuff_radius"				"700"
+      		}
+      		"10"
+      		{	
+      			"var_type" 				"FIELD_INTEGER"
+      			"buff_attack_range" 	"250"
+      		}
+      	}
+
+      	"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_type_96_150cm_searchlight_buff"
+				"Target" 		"CASTER"
+				"Duration"		"%buff_duration"
+			}
+
+			"RunScript"
+			{
+				"ScriptFile"	"abilities/items/searchlight.lua"
+				"Function"		"Check_night"
+				"modifier"		"modifier_type_96_150cm_searchlight_buff_night"
+			}
+		}
+
+      	"Modifiers"
+      	{
+      		"modifier_type_96_150cm_searchlight"
+      		{
+      			"Passive"			"1"
+      			"IsHidden"			"1"
+      			"IsDebuff"			"0"
+      			"IsPurgable" 		"0"
+
+      			"Properties"
+      			{
+      				"MODIFIER_PROPERTY_BONUS_NIGHT_VISION" "%night_vision_bouns"
+      			   	"MODIFIER_PROPERTY_BONUS_DAY_VISION"	"%day_vision_bouns"
+      			   	"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agility_bonus"
+      			}
+      		}
+
+      		"modifier_type_96_150cm_searchlight_buff"
+      		{
+      			"Passive"			"0"
+      			"IsHidden"			"0"
+      			"IsDebuff"			"0"
+      			"IsPurgable"		"1"
+      			"IsBuff"			"1"
+      			"IsDebuff"			"0"
+      			"IsStunDebuff"		"0"
+
+      			"Aura"          	"modifier_type_96_150cm_searchlight_debuff"
+      			"Aura_Radius"   	"%debuff_radius"
+      			"Aura_Teams"    	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+      			"Aura_Types"    	"DOTA_UNIT_TARGET_HERO"
+      			"Aura_Flags"    	"DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE | "
+      			"Aura_ApplyToCaster" "0"
+
+      			"Properties"
+      			{
+      				"MODIFIER_PROPERTY_EVASION_CONSTANT" "%buff_evasion_bouns"
+      			}
+
+      		}
+
+      		"modifier_type_96_150cm_searchlight_buff_night"
+      		{
+      			"Duration" "%buff_duration"
+      			"IsPurgable"		"1"
+      			"IsBuff"			"1"
+      			"IsDebuff"			"0"
+      			"IsStunDebuff"		"0"
+      			"IsHidden"			 "1"
+      			//Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)
+      			"Properties"
+      			{
+      				"MODIFIER_PROPERTY_ATTACK_RANGE_BONUS" "%buff_attack_range" 
+      				"MODIFIER_PROPERTY_BONUS_NIGHT_VISION_UNIQUE" "%buff_night_vision_bouns"
+      			}
+
+      			"OnCreated"
+      			{
+      				"ActOnTargets"
+      				{
+      					"Target"
+      					{
+      						"Center"  	"CASTER"
+      						"Radius" 	"%debuff_radius"
+      						"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+      						"Types" 	"DOTA_UNIT_TARGET_HERO"
+      					}
+      				
+      					"Action"    
+      					{
+      						"Stun"
+      						{
+      							"Duration"   "0.3"
+      							"Target" 	 "TARGET"
+      						}
+      					}
+      				}
+      			}
+      		}
+
+      		"modifier_type_96_150cm_searchlight_debuff"
+      		{
+      			"Passive"			"0"
+      			"IsHidden"			"0"
+      			"IsPurgable"		"1"
+      			"IsBuff"			"0"
+      			"IsDebuff"			"1"
+      			"IsStunDebuff"		"0"
+      			"Properties"
+      			{
+      				"MODIFIER_PROPERTY_MISS_PERCENTAGE" 	"%miss_debuff"
+      				"MODIFIER_PROPERTY_EVASION_CONSTANT"	"%debuff_evasion_bouns"
+      			}
+      		}
+      	}
+	}
+
+	"item_recipe_type_96_150cm_searchlight" 
+	{
+    	"ID" 					"3152"
+    	"BaseClass"           	"item_datadriven"
+    	"ItemRecipe"          	"1" //destroyed after combine
+    	"ItemCost"            	"0" //if its 0, it will combine without needing a recipe.
+    	"ItemResult"			"item_type_96_150cm_searchlight"      //the result of combining the ItemRequirements
+    	
+    	"ItemRequirements"
+    	{
+    	    "01" "item_searchlight;item_skilled_lookouts"
+   	     	    //"02" "item_ingredient_1;item_ingredient_2;item_ingredient_alternative_3"
+    	}
+	}	
+}

@@ -1,4 +1,1229 @@
 "DOTAAbilities"
-{
-	
+{	
+	"item_type_22_surface_radar"
+	{
+		"ID" 				"3800"
+		"BaseClass" 		"item_datadriven"
+		"ItemCost" 			"22"
+		"ItemKillable" 		"1" 
+		"ItemSellable" 		"1"
+
+		"ItemPurchasable" 		"1"
+		"ItemDroppable" 		"1"
+		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
+		"AbilityCooldown"		"16"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastRange"		"1000"
+		"AbilitySharedCooldown"	"surface_radar"
+        "AbilityTextureName"    "misc/22_sr"
+        "AbilityUnitTargetType"  "DOTA_UNIT_TARGET_HERO"
+        "AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_ENEMY"
+
+		"precache"
+		{
+			"particle" "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+    	}	   	
+
+    	"AbilitySpecial"
+    	{
+    		"01"
+    		{
+    			"var_type"			"FIELD_INTEGER"
+    			"radius1"			"600"
+    		}
+    		"02"
+    		{
+    			"var_type"			"FIELD_INTEGER"
+    			"radius2"			"1000"
+    		}
+    		"03"
+    		{
+    			"var_type"			"FIELD_FLOAT"
+    			"delay1"			"0.8"
+    		}
+    		"04"
+    		{
+    			"var_type"		"FIELD_INTEGER"
+    			"duration"		"3"
+    		}
+    		"05"
+    		{
+    			"var_type"		"FIELD_INTEGER"
+    			"bonus_str"		"5"
+    		}
+    		"06"
+    		{
+    			"var_type"			"FIELD_INTEGER"
+    			"bonus_accuracy"     "5"
+    		}
+    		"07"
+    		{
+    			"var_type"					"FIELD_INTEGER"
+    			"bonus_accuracy_tooltip"	"5"
+    		}
+			"08"
+    		{
+    			"var_type"					"FIELD_INTEGER"
+    			"bonus_cast_range"			"100"
+    		}
+            "09"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "weight"            "2"
+            }
+    		
+    	}
+
+    	"OnSpellStart"
+    	{
+    	
+    		"FireEffect"
+    		{
+    		    "EffectName"        "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+    		    "EffectAttachType"  "overhead_follow"
+    		    "Target"            "CASTER"
+    		}
+
+ 		   	"ActOnTargets"
+    		{
+    			"Target"
+    			{
+    				"Center"  	"CASTER"
+    				"Radius" 	"%radius1"
+    				"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+    				"Types" 	"DOTA_UNIT_TARGET_HERO"
+    				"Flags"		"DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+    			}
+    		
+    			"Action"    
+    			{
+    				"ApplyModifier"
+    				{
+    					"ModifierName"	"modifier_radar_show"
+    					"Target" 		"TARGET"
+    					"Duration"		"%duration"
+    				}
+    			}
+    		}
+
+    		
+    		"DelayedAction"
+    		{
+    			"Delay"     "%delay1"
+    			"Action"    
+    			{
+    				"ActOnTargets"
+    				{
+    					"Target"
+    					{
+    						"Center"  	"CASTER"
+    						"Radius" 	"%radius2"
+    						"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+    						"Types" 	"DOTA_UNIT_TARGET_HERO"
+    						"Flags"		"DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+    					}
+    		
+    					"Action"    
+    					{
+    						"ApplyModifier"
+    						{
+    							"ModifierName"	"modifier_radar_show"
+    							"Target" 		"TARGET"
+    							"Duration"		"%duration"
+    						}
+    					}
+    				}
+    			}
+    		}
+    	}
+		
+
+		"Modifiers"
+		{
+			"modifier_type_22_surface_radar"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" 			"%bonus_str"
+				    "MODIFIER_PROPERTY_MISS_PERCENTAGE" 				"%bonus_accuracy"
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/items/radar.lua"
+						"Function"		"add_modifier"
+						"bonus_range"	"%bonus_cast_range"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/items/radar.lua"
+						"Function"		"remove_modifier"
+					}
+				}
+			}
+
+			"modifier_radar_show"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PROVIDES_FOW_POSITION" "1"
+				}
+			}
+		}	
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------
+
+    "item_type_22_surface_radar_kai"
+	{
+		"ID" 				"3802"
+		"BaseClass" 		"item_datadriven"
+		"ItemCost" 			"22"
+		"ItemKillable" 		"1" 
+		"ItemSellable" 		"1"
+
+		"ItemPurchasable" 		"1"
+		"ItemDroppable" 		"1"
+		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
+		"AbilityCooldown"		"20"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCastRange"		"1200"
+		"AbilitySharedCooldown"	"surface_radar"
+		
+        "AbilityTextureName"    "misc/22_sr_kai"
+
+		"precache"
+		{
+			"particle" "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+    	}	   	
+
+    	"AbilitySpecial"
+    	{
+    		"01"
+    		{
+    			"var_type"			"FIELD_INTEGER"
+    			"radius1"			"700"
+    		}
+    		"02"
+    		{
+    			"var_type"			"FIELD_INTEGER"
+    			"radius2"			"1200"
+    		}
+    		"03"
+    		{
+    			"var_type"			"FIELD_FLOAT"
+    			"delay1"			"0.8"
+    		}
+    		"04"
+    		{
+    			"var_type"		"FIELD_INTEGER"
+    			"duration"		"3"
+    		}
+    		"05"
+    		{
+    			"var_type"		"FIELD_INTEGER"
+    			"bonus_str"		"8"
+    		}
+    		"06"
+    		{
+    			"var_type"			"FIELD_INTEGER"
+    			"bonus_accuracy"	"-7"
+    		}
+    		"07"
+    		{
+    			"var_type"					"FIELD_INTEGER"
+    			"bonus_accuracy_tooltip"	"7"
+    		}
+			"08"
+    		{
+    			"var_type"					"FIELD_INTEGER"
+    			"bonus_cast_range"			"150"
+    		}
+            "09"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_int"     "3"
+            }
+            "10"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "weight"            "3"
+            }
+    		
+    	}
+
+    	"OnSpellStart"
+    	{
+    	
+    		"FireEffect"
+    		{
+    		    "EffectName"        "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+    		    "EffectAttachType"  "overhead_follow"
+    		    "Target"            "CASTER"
+    		}
+
+ 		   	"ActOnTargets"
+    		{
+    			"Target"
+    			{
+    				"Center"  	"CASTER"
+    				"Radius" 	"%radius1"
+    				"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+    				"Types" 	"DOTA_UNIT_TARGET_HERO"
+    				"Flags"		"DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+    			}
+    		
+    			"Action"    
+    			{
+    				"ApplyModifier"
+    				{
+    					"ModifierName"	"modifier_radar_show"
+    					"Target" 		"TARGET"
+    					"Duration"		"%duration"
+    				}
+    			}
+    		}
+
+    		
+    		"DelayedAction"
+    		{
+    			"Delay"     "%delay1"
+    			"Action"    
+    			{
+    				"ActOnTargets"
+    				{
+    					"Target"
+    					{
+    						"Center"  	"CASTER"
+    						"Radius" 	"%radius2"
+    						"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+    						"Types" 	"DOTA_UNIT_TARGET_HERO"
+    						"Flags"		"DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+    					}
+    		
+    					"Action"    
+    					{
+    						"ApplyModifier"
+    						{
+    							"ModifierName"	"modifier_radar_show"
+    							"Target" 		"TARGET"
+    							"Duration"		"%duration"
+    						}
+    					}
+    				}
+    			}
+    		}
+    	}
+		
+
+		"Modifiers"
+		{
+			"modifier_type_22_surface_radar_kai"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS" 			"%bonus_str"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"           "%bonus_int"
+				    "MODIFIER_PROPERTY_MISS_PERCENTAGE" 				"%bonus_accuracy"
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/items/radar.lua"
+						"Function"		"add_modifier"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"abilities/items/radar.lua"
+						"Function"		"remove_modifier"
+					}
+				}
+			}
+
+			"modifier_radar_show"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PROVIDES_FOW_POSITION" "1"
+				}
+			}
+		}	
+    }
+    
+
+    //-------------------------------------------------------------------------------------------------------------------------------------
+
+    "item_type_33_surface_radar"
+    {
+        "ID"                "3804"
+        "BaseClass"         "item_datadriven"
+        "ItemCost"          "22"
+        "ItemKillable"      "1" 
+        "ItemSellable"      "1"
+
+        "ItemPurchasable"       "1"
+        "ItemDroppable"         "1"
+        "ItemShareability"      "ITEM_PARTIALLY_SHAREABLE" 
+        "AbilityCooldown"       "16"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastRange"      "1250"
+        "AbilitySharedCooldown" "surface_radar"
+        
+        "AbilityTextureName"    "misc/33_sr"
+
+        "precache"
+        {
+            "particle" "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+        }       
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius1"           "700"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius2"           "1250"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "delay1"            "0.8"
+            }
+            "04"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "duration"      "4"
+            }
+            "05"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_str"     "8"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_accuracy"    "-9"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_accuracy_tooltip"    "9"
+            }
+            "08"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_cast_range"          "185"
+            }
+            "09"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_int"     "5"
+            }
+            "10"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_agl"     "5"
+            }
+            "11"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "weight"            "5"
+            }
+            
+        }
+
+        "OnSpellStart"
+        {
+        
+            "FireEffect"
+            {
+                "EffectName"        "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+                "EffectAttachType"  "overhead_follow"
+                "Target"            "CASTER"
+            }
+
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Radius"    "%radius1"
+                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"     "DOTA_UNIT_TARGET_HERO"
+                    "Flags"     "DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+                }
+            
+                "Action"    
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_radar_show"
+                        "Target"        "TARGET"
+                        "Duration"      "%duration"
+                    }
+                }
+            }
+
+            
+            "DelayedAction"
+            {
+                "Delay"     "%delay1"
+                "Action"    
+                {
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "%radius2"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+                        }
+            
+                        "Action"    
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_radar_show"
+                                "Target"        "TARGET"
+                                "Duration"      "%duration"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        "Modifiers"
+        {
+            "modifier_type_33_surface_radar"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"            "%bonus_str"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"           "%bonus_int"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"             "%bonus_agl"
+                    "MODIFIER_PROPERTY_MISS_PERCENTAGE"                 "%bonus_accuracy"
+                }
+
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/items/radar.lua"
+                        "Function"      "add_modifier"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/items/radar.lua"
+                        "Function"      "remove_modifier"
+                    }
+                }
+            }
+            
+            "modifier_radar_show"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PROVIDES_FOW_POSITION" "1"
+                }
+            }
+        }   
+    }
+
+
+    //-------------------------------------------------------------------------------------------------------------------------------------
+
+    "item_type_32_surface_radar"
+    {
+        "ID"                "3804"
+        "BaseClass"         "item_datadriven"
+        "ItemCost"          "22"
+        "ItemKillable"      "1" 
+        "ItemSellable"      "1"
+
+        "ItemPurchasable"       "1"
+        "ItemDroppable"         "1"
+        "ItemShareability"      "ITEM_PARTIALLY_SHAREABLE" 
+        "AbilityCooldown"       "16"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastRange"      "1350"
+        "AbilitySharedCooldown" "surface_radar"
+        
+        "AbilityTextureName"    "misc/32_sr"
+
+        "precache"
+        {
+            "particle" "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+        }       
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius1"           "750"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius2"           "1350"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "delay1"            "0.9"
+            }
+            "04"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "duration"      "5.5"
+            }
+            "05"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_str"     "10"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_accuracy"    "-11"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_accuracy_tooltip"    "11"
+            }
+            "08"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_cast_range"          "200"
+            }
+            "09"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_int"     "7"
+            }
+            "10"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_agl"     "7"
+            }
+            "11"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_armor"   "4"
+            }
+            "12"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "weight"            "7"
+            }
+            
+        }
+
+        "OnSpellStart"
+        {
+        
+            "FireEffect"
+            {
+                "EffectName"        "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+                "EffectAttachType"  "overhead_follow"
+                "Target"            "CASTER"
+            }
+
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Radius"    "%radius1"
+                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"     "DOTA_UNIT_TARGET_HERO"
+                    "Flags"     "DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+                }
+            
+                "Action"    
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_radar_show"
+                        "Target"        "TARGET"
+                        "Duration"      "%duration"
+                    }
+                }
+            }
+
+            
+            "DelayedAction"
+            {
+                "Delay"     "%delay1"
+                "Action"    
+                {
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "%radius2"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+                        }
+            
+                        "Action"    
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_radar_show"
+                                "Target"        "TARGET"
+                                "Duration"      "%duration"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        "Modifiers"
+        {
+            "modifier_type_32_surface_radar"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"            "%bonus_str"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"           "%bonus_int"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"             "%bonus_agl"
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"            "%bonus_armor"
+                    "MODIFIER_PROPERTY_MISS_PERCENTAGE"                 "%bonus_accuracy"
+                }
+
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/items/radar.lua"
+                        "Function"      "add_modifier"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/items/radar.lua"
+                        "Function"      "remove_modifier"
+                    }
+                }
+            }
+            
+            "modifier_radar_show"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PROVIDES_FOW_POSITION" "1"
+                }
+            }
+        }   
+    }
+
+    //-------------------------------------------------------------------------------------------------------------------------------------
+
+    "item_type_32_surface_radar_kai"
+    {
+        "ID"                "3808"
+        "BaseClass"         "item_datadriven"
+        "ItemCost"          "22"
+        "ItemKillable"      "1" 
+        "ItemSellable"      "1"
+
+        "ItemPurchasable"       "1"
+        "ItemDroppable"         "1"
+        "ItemShareability"      "ITEM_PARTIALLY_SHAREABLE" 
+        "AbilityCooldown"       "16"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastRange"      "1400"
+        "AbilitySharedCooldown" "surface_radar"
+        
+        "AbilityTextureName"    "misc/32_sr_kai"
+
+        "precache"
+        {
+            "particle" "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+        }       
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius1"           "750"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius2"           "1400"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "delay1"            "0.9"
+            }
+            "04"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "duration"      "5.5"
+            }
+            "05"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_str"     "12"
+            }
+            "06"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_accuracy"    "-12"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_accuracy_tooltip"    "12"
+            }
+            "08"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_cast_range"          "250"
+            }
+            "09"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_int"     "10"
+            }
+            "10"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_agl"     "12"
+            }
+            "11"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_armor"   "6"
+            }
+            "12"
+            {
+                "var_type"     "FIELD_INTEGER"
+                "bonus_dv"     "150"
+            }
+            "13"
+            {
+                "var_type"     "FIELD_INTEGER"
+                "bonus_nv"     "100"
+            }
+            "14"
+            {
+                "var_type"    "FIELD_INTEGER"
+                "weight"      "7"
+            }
+            
+        }
+
+        "OnSpellStart"
+        {
+        
+            "FireEffect"
+            {
+                "EffectName"        "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+                "EffectAttachType"  "overhead_follow"
+                "Target"            "CASTER"
+            }
+
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Radius"    "%radius1"
+                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"     "DOTA_UNIT_TARGET_HERO"
+                    "Flags"     "DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+                }
+            
+                "Action"    
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_radar_show"
+                        "Target"        "TARGET"
+                        "Duration"      "%duration"
+                    }
+                }
+            }
+
+            
+            "DelayedAction"
+            {
+                "Delay"     "%delay1"
+                "Action"    
+                {
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "%radius2"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+                        }
+            
+                        "Action"    
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_radar_show"
+                                "Target"        "TARGET"
+                                "Duration"      "%duration"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        "Modifiers"
+        {
+            "modifier_type_32_surface_radar_kai"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"            "%bonus_str"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"           "%bonus_int"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"             "%bonus_agl"
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"            "%bonus_armor"
+                    "MODIFIER_PROPERTY_MISS_PERCENTAGE"                 "%bonus_accuracy"
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION"                "%bonus_dv"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"              "%bonus_nv"
+                }
+
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/items/radar.lua"
+                        "Function"      "add_modifier"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/items/radar.lua"
+                        "Function"      "remove_modifier"
+                    }
+                }
+            }
+            
+            "modifier_radar_show"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PROVIDES_FOW_POSITION" "1"
+                }
+            }
+        }   
+    }
+
+
+    //-------------------------------------------------------------------------------------------------------------------------------------
+
+    "item_15m_rangefinder"
+    {
+        "ID"                "3810"
+        "BaseClass"         "item_datadriven"
+        "ItemCost"          "22"
+        "ItemKillable"      "1" 
+        "ItemSellable"      "1"
+
+        "ItemPurchasable"       "1"
+        "ItemDroppable"         "1"
+        "ItemShareability"      "ITEM_PARTIALLY_SHAREABLE" 
+        "AbilityCooldown"       "14"
+        "AbilityBehavior"       "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCastRange"      "1600"
+        "AbilitySharedCooldown" "surface_radar"
+        
+        "AbilityTextureName"    "misc/15m_rangefinder"
+
+        "precache"
+        {
+            "particle" "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+        }       
+
+        "AbilitySpecial"
+        {
+            "01"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius1"           "800"
+            }
+            "02"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "radius2"           "1600"
+            }
+            "03"
+            {
+                "var_type"          "FIELD_FLOAT"
+                "delay1"            "0.85"
+            }
+            "04"
+            {
+                "var_type"      "FIELD_FLOAT"
+                "duration"      "6"
+            }
+            "05"
+            {
+                "var_type"          "FIELD_INTEGER"
+                "bonus_accuracy"    "-16"
+            }
+            "06"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_accuracy_tooltip"    "16"
+            }
+            "07"
+            {
+                "var_type"                  "FIELD_INTEGER"
+                "bonus_cast_range"          "300"
+            }
+            "08"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_stats"     "16"
+            }
+            "09"
+            {
+                "var_type"      "FIELD_INTEGER"
+                "bonus_armor"   "8"
+            }
+            "10"
+            {
+                "var_type"     "FIELD_INTEGER"
+                "aa_value"     "25"
+            }
+            "11"
+            {
+                "var_type"     "FIELD_INTEGER"
+                "bonus_dv"     "300"
+            }
+            "12"
+            {
+                "var_type"     "FIELD_INTEGER"
+                "bonus_nv"     "220"
+            }   
+            "13"
+            {
+                "var_type"    "FIELD_INTEGER"
+                "weight"      "11"
+            }
+        }
+
+        "OnSpellStart"
+        {
+        
+            "FireEffect"
+            {
+                "EffectName"        "particles/generic_hero_status/status_invisibility_start_ground.vpcf"
+                "EffectAttachType"  "overhead_follow"
+                "Target"            "CASTER"
+            }
+
+            "ActOnTargets"
+            {
+                "Target"
+                {
+                    "Center"    "CASTER"
+                    "Radius"    "%radius1"
+                    "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                    "Types"     "DOTA_UNIT_TARGET_HERO"
+                    "Flags"     "DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+                }
+            
+                "Action"    
+                {
+                    "ApplyModifier"
+                    {
+                        "ModifierName"  "modifier_radar_show"
+                        "Target"        "TARGET"
+                        "Duration"      "%duration"
+                    }
+                }
+            }
+
+            
+            "DelayedAction"
+            {
+                "Delay"     "%delay1"
+                "Action"    
+                {
+
+
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/items/radar.lua"
+                        "Function"      "air_radar"
+                        "radius"        "%radius2"
+                        "modifier"      "modifier_radar_show"
+                        "duration"      "%duration"
+                    }
+
+
+                    "ActOnTargets"
+                    {
+                        "Target"
+                        {
+                            "Center"    "CASTER"
+                            "Radius"    "%radius2"
+                            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                            "Types"     "DOTA_UNIT_TARGET_HERO"
+                            "Flags"     "DOTA_UNIT_TARGET_FLAG_NO_INVIS | DOTA_UNIT_TARGET_FLAG_NOT_CREEP_HERO"
+                        }
+            
+                        "Action"    
+                        {
+                            "ApplyModifier"
+                            {
+                                "ModifierName"  "modifier_radar_show"
+                                "Target"        "TARGET"
+                                "Duration"      "%duration"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+
+        "Modifiers"
+        {
+            "modifier_15m_rangefinder"
+            {
+                "Passive"           "1"
+                "IsHidden"          "1"
+                "IsDebuff"          "0"
+                
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"            "%bonus_stats"
+                    "MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"           "%bonus_stats"
+                    "MODIFIER_PROPERTY_STATS_AGILITY_BONUS"             "%bonus_stats"
+                    "MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"            "%bonus_armor"
+                    "MODIFIER_PROPERTY_MISS_PERCENTAGE"                 "%bonus_accuracy"
+                    "MODIFIER_PROPERTY_BONUS_DAY_VISION"                "%bonus_dv"
+                    "MODIFIER_PROPERTY_BONUS_NIGHT_VISION"              "%bonus_nv"
+                }
+
+                "OnCreated"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/items/radar.lua"
+                        "Function"      "add_modifier"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/kanmusu/aa.lua"
+                        "Function"      "aa_increase"
+                        "aa_value"      "%aa_value"
+                    }
+                }
+                "OnDestroy"
+                {
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/items/radar.lua"
+                        "Function"      "remove_modifier"
+                    }
+                    "RunScript"
+                    {
+                        "ScriptFile"    "abilities/kanmusu/aa.lua"
+                        "Function"      "aa_decrease"
+                        "aa_value"      "%aa_value"
+                    }
+                }
+            }
+            
+            "modifier_radar_show"
+            {
+                "Passive"           "0"
+                "IsHidden"          "0"
+                "IsDebuff"          "1"
+
+                "Properties"
+                {
+                    "MODIFIER_PROPERTY_PROVIDES_FOW_POSITION" "1"
+                }
+            }
+        }   
+    }
 }
