@@ -3,12 +3,12 @@
 	"item_catapult"
 	{
 
-		"ID" "2950"
-		"BaseClass"	 "item_datadriven"
-		"ItemCost" 		"229"
-		"ItemKillable" 	"0" 
-		"ItemSellable" 	"1"
-		"ItemPurchasable"	 "1"
+		"ID"                    "2950"
+		"BaseClass"	            "item_datadriven"
+		"ItemCost" 		        "229"
+		"ItemKillable" 	        "0" 
+		"ItemSellable"        	"1"
+		"ItemPurchasable"	    "1"
 		"ItemDroppable" 		"1"
 		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
         //"AbilityTextureName" 	""

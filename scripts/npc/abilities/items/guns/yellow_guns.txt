@@ -1,3 +1,7 @@
 "DOTAAbilities"
 {
+	"item_15.2cm_triple_gun_mount"
+	{
+
+	}
 }

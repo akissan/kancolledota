@@ -2,7 +2,6 @@
 {
 	"item_type99_dive_bomber" 
 	{
-
 		"ID" "3800"
 		"BaseClass" "item_datadriven"
 		"ItemCost" "23"

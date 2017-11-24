@@ -579,7 +579,7 @@
 
     "item_type_32_surface_radar"
     {
-        "ID"                "3804"
+        "ID"                "3806"
         "BaseClass"         "item_datadriven"
         "ItemCost"          "22"
         "ItemKillable"      "1" 

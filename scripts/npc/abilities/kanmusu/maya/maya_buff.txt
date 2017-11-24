@@ -1,0 +1,81 @@
+"DOTAAbilities"
+{
+	"bofu"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"Pantsushot"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCooldown"				"18 16 14 12"
+		"AbilityManaCost"				"90"
+		"AbilityCastRange"				"400 500 600 700"
+		"AbilityCastPoint"				"0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"7"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"aa_value"			"20 40 70 110"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_maya_buff"
+				"Target" 		"TARGET"
+				//"Duration"		"%duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_maya_buff"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"		"1"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsStunDebuff"		"0"
+				"Duration"			"%duration"
+					//Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)	
+				//"EffectName"		"particle_name"
+				//"EffectAttachType"	"follow_origin"
+		
+				"OnCreated"
+        		{
+        			"RunScript"
+        			{
+        				"ScriptFile"	"abilities/kanmusu/aa.lua"
+        				"Function"		"aa_increase"
+        				"aa_value" 		"%aa_value"
+        			}
+        		}
+
+
+
+        		"OnDestroy"
+        		{
+        			"RunScript"
+        			{
+        				"ScriptFile"	"abilities/kanmusu/aa.lua"
+        				"Function"		"aa_decrease"
+        				"aa_value" 		"%aa_value"
+        				//"target"		"TARGET"
+        			}
+        		}
+			}
+		}
+	}
+}

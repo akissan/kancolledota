@@ -1,4 +1,4 @@
-class_ability_index = 1
+class_ability_index = 3
 
 function AA_initialize( event )
 	local caster = event.caster

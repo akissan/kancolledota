@@ -1,6 +1,11 @@
 #base "mechanics/shield/shield.txt"
 #base "abilities/kanmusu/AA.txt"
 #base "mechanics/classes/DD/DD_medium.txt"
+#base "mechanics/classes/CA(V)/CA.txt"
+#base "abilities/kanmusu/maya/maya_ultimate.txt"
+#base "abilities/kanmusu/maya/maya_stun.txt"
+#base "abilities/kanmusu/maya/maya_buff.txt"
+
 "DOTAAbilities"
 {
 }

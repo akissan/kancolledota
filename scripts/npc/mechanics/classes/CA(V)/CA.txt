@@ -1,0 +1,247 @@
+"DOTAAbilities"
+{
+	"CA"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"				"1"
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"class_evasion_bonus"			"18"
+			}	
+
+			"02"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"class_plane_count"				"0"
+			}
+
+			"03"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"class_rate_of_fire"			"1.4"
+			}
+
+			"04"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"class_aa"						"15"
+			}
+
+			"05"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"class_NP_multiplier"			"1.25"
+			}
+
+			"06"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"class_armor_penalty"			"-10"
+			}
+
+			"07"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"class_carry"					"44"
+			}
+
+			"09"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"class_overweight_penalty_tooltip"	"18"
+			}
+
+			"10"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"class_overweight_penalty"			"-18"
+			}
+
+			"11"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"class_miss_chance"					"22"
+			}
+		}
+	
+
+		"Modifiers"
+		{
+			"modifier_class_CA"
+			{
+				"IsPurgable"		"0"
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+				
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_BASE_ATTACK_TIME_CONSTANT" 		"%class_rate_of_fire"
+					"MODIFIER_PROPERTY_EVASION_CONSTANT" 				"%class_evasion_bonus" 
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"			"%class_armor_penalty"
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE"					"%class_miss_chance"
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"mechanics/classes.lua"
+						"Function"		"Plane_slots_create"
+						"plane_count"	"%class_plane_count"
+						"modifier"		"modifier_plane_slots"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"		"mechanics/classes.lua"
+						"Function"			"Carry_slots_create"
+						"carry"				"%class_carry"
+						"modifier"			"modifier_carry"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"		"mechanics/classes.lua"
+						"Function"			"AA_initialize"
+						"modifier"			"modifier_AA_stacks"
+						"init_aa"			"%class_aa"
+					}
+				}
+
+				"ThinkInterval"  "0.03"
+				"OnIntervalThink"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"mechanics/classes.lua"
+						"Function"		"AA_show"
+						"modifier"		"modifier_AA_stacks"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"			"mechanics/classes.lua"
+						"Function"				"Check_overweight"
+						"modifier"				"modifier_overweight"
+						"modifier_visual"		"modifier_overweight_visual"
+						"modifier_stacks"		"modifier_carry"
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"			"mechanics/classes.lua"
+						"Function"				"Check_NP"
+						"NP_multiplier"			"%class_NP_multiplier"
+						"modifier"				"modifier_NP_hidden"
+						"modifier_visual"		"modifier_NP_visual"
+					}
+
+
+					"RunScript"
+					{
+						"ScriptFile"			"mechanics/classes.lua"
+						"Function"				"Check_plane_slots"
+						"modifier"				"modifier_overplane"
+						"modifier_visual"		"modifier_plane_slots"
+					}
+				}
+			}
+
+			"modifier_AA_stacks"
+			{
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+				"IsDebuff"			"0"
+				"IsStunDebuff"		"0"
+			}
+
+			"modifier_plane_slots"
+			{
+				"IsPurgable"		"0"
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
+			}
+
+			"modifier_overplane"
+			{
+				"IsPurgable"		"0"
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"1"
+
+				"States"
+				{
+					"MODIFIER_STATE_SILENCED"		"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_MUTED"			"MODIFIER_STATE_VALUE_ENABLED"
+						
+				}
+			}
+
+			"modifier_carry"
+			{
+				"IsPurgable"		"0"
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsDebuff"			"0"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_PERMANENT"
+			}
+
+			"modifier_overweight_visual"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff" 			"1"
+				"Passive" 			"0"
+				"IsHidden"			"0"
+			}
+
+
+			"modifier_overweight"
+			{
+				"IsPurgable"		"0"
+				"IsDebuff" 			"1"
+				"Passive" 			"0"
+				"IsHidden" 			"1"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+				
+				"Properties"
+				{
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT" 	"%class_overweight_penalty"
+				    "MODIFIER_PROPERTY_TURN_RATE_PERCENTAGE"	 	"%class_overweight_penalty" 
+				}
+			}
+
+			"modifier_NP_visual"
+			{
+				"IsPurgable"		"0"
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsBuff"			"1"
+			}
+
+			"modifier_NP_hidden"
+			{
+				"IsPurgable"		"0"
+				"Passive"			"0"
+				"IsHidden"			"1"
+				"IsDebuff"			"0"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 		"1"
+				}
+			}
+		}
+	}
+}

@@ -10,7 +10,7 @@
 		"ItemPurchasable" 		"1"
 		"ItemDroppable" 		"1"
 		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
-        //"AbilityTextureName" 	"guns/36.5cm_gun"
+        "AbilityTextureName" 	"guns/12cm_twin"
         "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 
         "AbilitySpecial"
@@ -61,7 +61,7 @@
 		"ItemPurchasable" 		"1"
 		"ItemDroppable" 		"1"
 		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
-        //"AbilityTextureName" 	"guns/36.5cm_gun"
+       	"AbilityTextureName" 	"guns/12cm_twin_B"
         "AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
         "AbilityCooldown"				"22.0"
 
@@ -176,4 +176,346 @@
 			}
 		}
 	}
+
+
+
+	"item_35.6cm_twin_gun_mount"
+	{
+		"ID" 					"2850"
+		"BaseClass"			 	"item_datadriven"
+		"ItemCost" 				"3009"
+		"ItemKillable" 			"1" 
+		"ItemSellable" 			"1"
+		"ItemPurchasable" 		"1"
+		"ItemDroppable" 		"1"
+		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
+        "AbilityTextureName" 	"guns/35cm_twin"
+        "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+        //"AbilityCooldown"		"22.0"
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"weight"				"14"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"12"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"accuracy"				"-6"
+			}
+		}
+
+
+		"Modifiers"
+		{
+			"modifier_35.6cm_twin_gun_mount"	
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 			"%bonus_damage"
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE" 				"%accuracy"
+				}
+			}
+		}
+	}
+
+	"item_35.6cm_twin_gun_mount_dazzle"
+	{
+		"ID" 					"2851"
+		"BaseClass"			 	"item_datadriven"
+		"ItemCost" 				"3200"
+		"ItemKillable" 			"1" 
+		"ItemSellable" 			"1"
+		"ItemPurchasable" 		"1"
+		"ItemDroppable" 		"1"
+		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
+        "AbilityTextureName" 	"guns/35cm_twin_dazzle"
+        "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"		"18.0"
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"weight"				"16"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"15"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"15"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buff_as"				"55"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"7"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"accuracy"				"-9"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_35.6cm_twin_gun_mount_dazzle_buff"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_35.6cm_twin_gun_mount_dazzle"	
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 			"%bonus_damage"
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE" 				"%accuracy"
+				}
+
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_35.6cm_twin_gun_mount_dazzle_buff"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+
+			"modifier_35.6cm_twin_gun_mount_dazzle_buff"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%buff_as" 
+				}
+			}
+		}
+	}
+
+	"item_38cm_twin_gun_mount"
+	{
+		"ID" 					"2852"
+		"BaseClass"			 	"item_datadriven"
+		"ItemCost" 				"3200"
+		"ItemKillable" 			"1" 
+		"ItemSellable" 			"1"
+		"ItemPurchasable" 		"1"
+		"ItemDroppable" 		"1"
+		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
+        "AbilityTextureName" 	"guns/38cm_twin"
+        "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"		"17.0"
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"weight"				"17"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"18"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"25"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buff_as"				"70"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"7"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"accuracy"				"-10"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_38cm_twin_gun_mount_buff"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_38cm_twin_gun_mount"	
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 			"%bonus_damage"
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE" 				"%accuracy"
+				}
+
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_38cm_twin_gun_mount"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+
+			"modifier_38cm_twin_gun_mount_buff"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%buff_as" 
+				}
+			}
+		}
+	}
+
+	"item_38cm_twin_gun_mount_kai"
+	{
+		"ID" 					"2853"
+		"BaseClass"			 	"item_datadriven"
+		"ItemCost" 				"3200"
+		"ItemKillable" 			"1" 
+		"ItemSellable" 			"1"
+		"ItemPurchasable" 		"1"
+		"ItemDroppable" 		"1"
+		"ItemShareability"		"ITEM_PARTIALLY_SHAREABLE" 
+        "AbilityTextureName" 	"guns/38cm_twin_kai"
+        "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+        "AbilityCooldown"		"15.0"
+
+        "AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"weight"				"16"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_damage"			"24"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_as"				"35"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"buff_as"				"90"
+			}			
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"duration"				"7"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"accuracy"				"-15"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"ModifierName"	"modifier_38cm_twin_gun_mount_kai_buff"
+				"Target" 		"CASTER"
+				"Duration"		"%duration"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_38cm_twin_gun_mount_kai"	
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+				"IsPurgable"		"0"
+				"IsBuff"			"1"
+
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE" 			"%bonus_damage"
+					"MODIFIER_PROPERTY_MISS_PERCENTAGE" 				"%accuracy"
+				}
+
+				"OnDestroy"
+				{
+					"RemoveModifier"
+					{
+						"ModifierName"	"modifier_38cm_twin_gun_mount_kai_buff"
+						"Target" 		"CASTER"
+					}
+				}
+			}
+
+			"modifier_38cm_twin_gun_mount_kai_buff"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT" "%buff_as" 
+				}
+			}
+		}
+	}
+	
 }

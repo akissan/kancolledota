@@ -1,5 +1,5 @@
 -- This is the primary barebones gamemode script and should be used to assist in initializing your game mode
-class_ability_index = 1
+class_ability_index = 3
 
 BAREBONES_VERSION = "1.00"
 

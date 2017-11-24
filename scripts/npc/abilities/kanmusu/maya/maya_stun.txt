@@ -1,0 +1,108 @@
+"DOTAAbilities"
+{
+	"depth_strike"
+	{
+		"BaseClass"						"ability_datadriven"
+		"AbilityTextureName"			"Zuiun"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityType" 					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityCooldown"				"11"
+		"AbilityManaCost"				"65"
+		"AbilityCastRange"				"750"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_2"
+		"AoERadius"						"300"
+		"AbilityDamage"					"85 100 115 130"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"stun_duration"		"1.1 1.4 1.7 2"
+			}
+			"02"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"debuff_duration"	"3.5 4.0 4.5 5"
+			}
+			"03"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"debuff_armor"		"-8"
+			}
+			"04"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"debuff_slow"		"-30"	
+			}
+			"05"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"300"
+			}
+		}
+
+		"OnSpellStart"
+		{
+			"ActOnTargets"
+			{
+				"Target"
+				{
+					"Center"  	"POINT"
+					"Radius" 	"%radius"
+					"Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				}
+			
+				"Action"    
+				{
+					"Damage"
+					{
+						"Target"		"TARGET"
+						"Type"			"DAMAGE_TYPE_MAGICAL"
+						"Damage"		"%AbilityDamage"
+					}
+
+					"ApplyModifier"
+					{
+						"ModifierName"	"modifier_maya_stun_debuff"
+						"Target" 		"TARGET"
+						"Duration"		"%debuff_duration"
+					}
+
+					"Stun"
+					{
+						"Duration"   "%stun_duration"
+						"Target" 	 "TARGET"
+					}
+				}
+			}	
+		}
+
+		"Modifiers"
+		{
+			"modifier_maya_stun_debuff"
+			{
+				"Passive"			"0"
+				"IsHidden"			"0"
+				"IsPurgable"		"1"
+				"IsBuff"			"0"
+				"IsDebuff"			"1"
+				"IsStunDebuff"		"1"
+				//Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)
+				///"EffectName"		"particle_name"
+				//"EffectAttachType"	"follow_origin"
+		
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%debuff_armor"
+				    "MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE" "%debuff_slow" 
+				}
+			}
+		}
+	}
+}

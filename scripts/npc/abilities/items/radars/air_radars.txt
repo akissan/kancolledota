@@ -2,7 +2,7 @@
 {	
 	"item_type_13_air_radar"
 	{
-		"ID" 				"3293"
+		"ID" 				"3850"
 		"BaseClass" 		"item_datadriven"
 		"ItemCost" 			"22"
 		"ItemKillable" 		"1" 

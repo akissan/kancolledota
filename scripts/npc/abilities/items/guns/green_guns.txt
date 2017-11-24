@@ -2,7 +2,7 @@
 {
 	"item_7.7mm_machine_gun"
 	{
-		"ID" "2900"
+		"ID" "2650"
 		"BaseClass"	 					"item_datadriven"
 		"ItemCost" 						"80"
 		"ItemKillable" 					"1" 
@@ -60,7 +60,7 @@
 
 	"item_recipe_25mm_twin_autocannon_mount" 
 	{
-    	"ID" "2901"
+    	"ID" "2651"
     	"BaseClass"           	"item_datadriven"
     	"ItemRecipe"          	"1" //destroyed after combine
     	"ItemCost"            	"250" //if its 0, it will combine without needing a recipe.
@@ -76,7 +76,7 @@
 
 	"item_25mm_twin_autocannon_mount"
 	{
-		"ID" "2902"
+		"ID" "2652"
 		"BaseClass"	 					"item_datadriven"
 		"ItemCost" 						"1000"
 		"ItemKillable" 					"1" 
