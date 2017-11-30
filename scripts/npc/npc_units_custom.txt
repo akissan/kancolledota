@@ -30,7 +30,8 @@
         "AttackRange"           	"620"
         "AttackRangeBuffer"          "100"
 
-
+        "AbilityLayout"               "1"
+        "Ability1"                    "aa_take_damage"    
 
         "ProjectileModel"            "particles/units/heroes/hero_lina/lina_base_attack.vpcf"
         "ProjectileSpeed"            "900"

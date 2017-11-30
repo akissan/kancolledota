@@ -14,6 +14,11 @@
 		"AbilityCastPoint"				"0.3"
 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_5"
 
+		"precache"
+		{
+			"particle" "particles/heroes/maya/maya_buff_pulse.vpcf"
+		}
+
 		"AbilitySpecial"
 		{
 			"01"
@@ -34,7 +39,6 @@
 			{
 				"ModifierName"	"modifier_maya_buff"
 				"Target" 		"TARGET"
-				//"Duration"		"%duration"
 			}
 		}
 
@@ -49,10 +53,11 @@
 				"IsDebuff"			"0"
 				"IsStunDebuff"		"0"
 				"Duration"			"%duration"
-					//Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)	
-				//"EffectName"		"particle_name"
-				//"EffectAttachType"	"follow_origin"
-		
+			
+				"EffectName"		"particles/heroes/maya/maya_buff_pulse.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+
 				"OnCreated"
         		{
         			"RunScript"
@@ -72,7 +77,6 @@
         				"ScriptFile"	"abilities/kanmusu/aa.lua"
         				"Function"		"aa_decrease"
         				"aa_value" 		"%aa_value"
-        				//"target"		"TARGET"
         			}
         		}
 			}

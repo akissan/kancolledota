@@ -48,6 +48,7 @@
 		"precache"
     	{
     	    "particle" "particles/units/heroes/hero_gyrocopter/gyro_base_attack.vpcf"
+    	    "particle" "particles/heroes/maya/maya_ult_circle.vpcf"
     	}
 
 		"OnProjectileHitUnit"
@@ -100,6 +101,12 @@
 
 				"OnCreated"
         		{
+        			"AttachEffect"
+        			{
+        				"EffectName"        "particles/heroes/maya/maya_ult_circle.vpcf"
+        				"EffectAttachType"  "follow_origin"
+        				"Target"            "CASTER"	
+        			}
         			"RunScript"
         			{
         				"ScriptFile"	"abilities/kanmusu/aa.lua"
@@ -107,6 +114,8 @@
         				"aa_value" 		"%aa_value_buff"
         			}
         		}
+
+
 
         		"OnDestroy"
         		{

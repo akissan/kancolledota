@@ -17,6 +17,11 @@
 		"AbilityDamage"					"85 100 115 130"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 
+		"precache"
+		{
+			"particle"   "particles/heroes/maya/maya_stun.vpcf"
+		}
+
 		"AbilitySpecial"
 		{
 			"01"
@@ -48,6 +53,8 @@
 
 		"OnSpellStart"
 		{
+
+			
 			"ActOnTargets"
 			{
 				"Target"
@@ -60,6 +67,14 @@
 			
 				"Action"    
 				{
+					"FireEffect"
+					{
+						"EffectName"        "particles/heroes/maya/maya_stun.vpcf"
+						"EffectAttachType"  "abs_origin"
+						"Target"            "TARGET"
+					}
+
+			
 					"Damage"
 					{
 						"Target"		"TARGET"
@@ -93,10 +108,7 @@
 				"IsBuff"			"0"
 				"IsDebuff"			"1"
 				"IsStunDebuff"		"1"
-				//Purge(bool RemovePositiveBuffs, bool RemoveDebuffs, bool BuffsCreatedThisFrameOnly, bool RemoveStuns, bool RemoveExceptions)
-				///"EffectName"		"particle_name"
-				//"EffectAttachType"	"follow_origin"
-		
+				
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS" "%debuff_armor"
